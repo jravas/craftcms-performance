@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: en-US
+name: mgmotor
+primary: true
+siteGroup: bb0e059e-9697-4577-a3ed-9afd2a36f401 # mgmotor
+sortOrder: 1

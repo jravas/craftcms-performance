@@ -1,0 +1,22 @@
+dateModified: 1721828400
+email:
+  fromEmail: josip@prototyp.digital
+  fromName: mgmotor
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    4f0e73fd-0657-4780-a08e-bc2b645253c5: Common # Common
+    164ddaa2-3f45-46dd-ad60-f55681b8692d: mgmotor # mgmotor
+    bb0e059e-9697-4577-a3ed-9afd2a36f401: mgmotor # mgmotor
+system:
+  edition: solo
+  live: true
+  name: mgmotor
+  schemaVersion: 4.5.3.0
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true

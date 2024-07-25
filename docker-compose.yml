@@ -1,0 +1,55 @@
+version: "3.6"
+services:
+  cms:
+    build:
+      context: .
+      target: cms
+      dockerfile: Dockerfile.php
+    image: craftcms/nginx:8.1
+    volumes:
+      - .:/app
+    env_file: .env
+    ports:
+      - 8080:8080
+  console:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    build:
+      context: .
+      target: cli
+      dockerfile: Dockerfile.php
+    image: craftcms/cli:8.1
+    volumes:
+      - .:/app
+    env_file: .env
+  mysql:
+    image: mysql:oracle
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: CraftCMS
+      MYSQL_USER: Craft
+      MYSQL_PASSWORD: SecurePassword
+      # We aren’t going to use this,
+      # but it's required by the image:
+      MYSQL_ROOT_PASSWORD: root
+    env_file: .env
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h localhost -u${MYSQL_USER} -p${MYSQL_PASSWORD}",
+        ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+  redis:
+    image: redis:5-alpine
+    ports:
+      - 6379:6379
+volumes:
+  db_data:
